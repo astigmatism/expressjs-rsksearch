@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var ParseService = require('../services/parse')
 
-/* GET home page. */
 router.get('/parse', function(req, res, next) {
   
     ParseService.Parse(function(err) {
@@ -11,6 +10,10 @@ router.get('/parse', function(req, res, next) {
         }
         res.json();
     });
+});
+
+router.get('/search', function(req, res, next) {
+    res.json(global.everything);
 });
 
 module.exports = router;
