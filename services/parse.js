@@ -128,7 +128,12 @@ ParseService.ReadScript = function(data, callback) {
 
         var cacheTitle = parsed[i].show + 's' + parsed[i].series + 'e' + parsed[i].episode + 'l' + parsed[i].linenumber;
 
-        myCache.set(cacheTitle, parsed[i]);
+        //myCache.set(cacheTitle, parsed[i]);
+        if (!global.hasOwnProperty('everything')) {
+            global.everything = {};
+        }
+
+        global.everything[cacheTitle] = parsed[i];
     }
 
     console.log('all cached');
