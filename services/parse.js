@@ -50,6 +50,7 @@ ParseService.ReadScript = function(data, callback) {
     var series;
     var episode;
     var date;
+    var title;
     var parsed = [];
 
     for (var i = 0, len = lines.length; i < len; ++i) {
@@ -81,42 +82,78 @@ ParseService.ReadScript = function(data, callback) {
                 case 'date':
                     date = new Date(content);
                     break;
+                case 'title':
+                    title = content;
+                    break;
 
                 case 'ricky':
                 case 'steve':
                 case 'karl':
                 case 'ricky and steve':
                 case 'steve and ricky':
+                case 'ricky and karl':
+                case 'steve and karl':
+                case 'claire':
+
+                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'host', currentSegment, content);
+                    parsed.push(line);
+                    linecounter++;
+                    break;
+
                 case 'fella':
                 case 'sombre announcer':
+                case 'jonathan':
+                case 'dermot':
+                case 'co-presenter':
+                case 'steve taylor':
+                case 'boy':
+                case 'boys':
+
+                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'in-studio guest', currentSegment, content);
+                    parsed.push(line);
+                    linecounter++;
+                    break;
+
+                case 'neil':
+                case 'lindsey':
+                case 'dan':
+                case 'david':
                     
-                    var line = new Line(show, series, episode, date, subject, linecounter, 'spoken', currentSegment, content);
+                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'call-in guest', currentSegment, content);
                     parsed.push(line);
                     linecounter++;
                     
-                    
-
                     break;
                 
-                case 'title':
+                case 'trail':
+                case 'tape of dilated peoples':
+                case 'tape of dilated peoples played over song':
+
+                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'recording', currentSegment, content);
+                    parsed.push(line);
+                    linecounter++;
+                    
+                    break;
+
+                case 'segment':
                     currentSegment = content;
                     break;
                 case 'song':
                     
-                    var line = new Line(show, series, episode, date, subject, linecounter, 'song', currentSegment, content);
+                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'song', currentSegment, content);
                     parsed.push(line);
                     linecounter++;
 
                     break;
                 default:
-                    console.log('unknown subject: ' + subject);
+                    console.log('unknown subject in ' + title + ' --> ' + subject + ': ' + content);
             }
         
         } else {
 
             //if there was no match to the line having a :, then its a stage direction or audible sound
 
-            var line = new Line(show, series, episode, date, null, linecounter, 'audible', lines[i]);
+            var line = new Line(show, series, episode, date, title, null, linecounter, 'audible', lines[i]);
             parsed.push(line);
             linecounter++;
         }

@@ -1,11 +1,12 @@
 
 
-Line = function(show, series, episode, date, subject, linenumber, type, segment, content) {
+Line = function(show, series, episode, date, title, subject, linenumber, type, segment, content) {
 
     this.show = show;
     this.series = series;
     this.episode = episode;
     this.date = date;
+    this.title = title;
 
     this.subject = subject;
     this.linenumber = linenumber;
