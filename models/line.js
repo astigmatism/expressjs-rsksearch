@@ -1,6 +1,6 @@
 
 
-Line = function(show, series, episode, date, title, subject, linenumber, type, segment, content) {
+Line = function(show, series, episode, date, title, subject, linenumber, type, segment, content, wordcontent) {
 
     this.show = show;
     this.series = series;
@@ -13,6 +13,7 @@ Line = function(show, series, episode, date, title, subject, linenumber, type, s
     this.type = type;
     this.segment = segment;
     this.content = content;
+    this.wordcontent = wordcontent;
 };
 
 module.exports = Line;

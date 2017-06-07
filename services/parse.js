@@ -67,6 +67,7 @@ ParseService.ReadScript = function(data, callback) {
         {
             var subject = match[1].trim();
             var content = match[2].trim();
+            var wordcontent = content.replace(/[^\w\s]/g, '');
 
             switch(subject.toLocaleLowerCase())
             {
@@ -95,7 +96,7 @@ ParseService.ReadScript = function(data, callback) {
                 case 'steve and karl':
                 case 'claire':
 
-                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'host', currentSegment, content);
+                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'host', currentSegment, content, wordcontent);
                     parsed.push(line);
                     linecounter++;
                     break;
@@ -109,7 +110,7 @@ ParseService.ReadScript = function(data, callback) {
                 case 'boy':
                 case 'boys':
 
-                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'in-studio guest', currentSegment, content);
+                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'in-studio guest', currentSegment, content, wordcontent);
                     parsed.push(line);
                     linecounter++;
                     break;
@@ -119,7 +120,7 @@ ParseService.ReadScript = function(data, callback) {
                 case 'dan':
                 case 'david':
                     
-                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'call-in guest', currentSegment, content);
+                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'call-in guest', currentSegment, content, wordcontent);
                     parsed.push(line);
                     linecounter++;
                     
@@ -129,7 +130,16 @@ ParseService.ReadScript = function(data, callback) {
                 case 'tape of dilated peoples':
                 case 'tape of dilated peoples played over song':
 
-                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'recording', currentSegment, content);
+                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'recording', currentSegment, content, wordcontent);
+                    parsed.push(line);
+                    linecounter++;
+                    
+                    break;
+                
+                case 'rod stewart':
+                case 'luther vandross':
+
+                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'music', currentSegment, content, wordcontent);
                     parsed.push(line);
                     linecounter++;
                     
@@ -140,7 +150,7 @@ ParseService.ReadScript = function(data, callback) {
                     break;
                 case 'song':
                     
-                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'song', currentSegment, content);
+                    var line = new Line(show, series, episode, date, title, subject, linecounter, 'song', currentSegment, content, wordcontent);
                     parsed.push(line);
                     linecounter++;
 
@@ -151,7 +161,7 @@ ParseService.ReadScript = function(data, callback) {
         
         } else {
 
-            //if there was no match to the line having a :, then its a stage direction or audible sound
+            //if there was no match to the line having a :, then its a stage direction or audible sound (not searchable but will appear with results)
 
             var line = new Line(show, series, episode, date, title, null, linecounter, 'audible', lines[i]);
             parsed.push(line);
