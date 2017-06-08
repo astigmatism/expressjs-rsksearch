@@ -98,6 +98,8 @@ ParseService.ReadScript = function(data, callback) {
                 case 'claire and steve':
                 case 'karl and steve':
                 case 'ricky and claire':
+                case 'ricky and steve and karl':
+                case 'karl and ricky':
 
                     var line = new Line(show, series, episode, date, title, subject, linecounter, 'host', currentSegment, content, wordcontent);
                     parsed.push(line);
@@ -113,6 +115,7 @@ ParseService.ReadScript = function(data, callback) {
                 case 'boy':
                 case 'boys':
                 case 'tarrin':
+                case 'dr. neil fox':
 
                     var line = new Line(show, series, episode, date, title, subject, linecounter, 'in-studio guest', currentSegment, content, wordcontent);
                     parsed.push(line);
