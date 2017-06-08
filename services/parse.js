@@ -95,6 +95,8 @@ ParseService.ReadScript = function(data, callback) {
                 case 'ricky and karl':
                 case 'steve and karl':
                 case 'claire':
+                case 'claire and steve':
+                case 'karl and steve':
 
                     var line = new Line(show, series, episode, date, title, subject, linecounter, 'host', currentSegment, content, wordcontent);
                     parsed.push(line);
@@ -109,6 +111,7 @@ ParseService.ReadScript = function(data, callback) {
                 case 'steve taylor':
                 case 'boy':
                 case 'boys':
+                case 'tarrin':
 
                     var line = new Line(show, series, episode, date, title, subject, linecounter, 'in-studio guest', currentSegment, content, wordcontent);
                     parsed.push(line);
@@ -119,6 +122,28 @@ ParseService.ReadScript = function(data, callback) {
                 case 'lindsey':
                 case 'dan':
                 case 'david':
+                case 'male caller':
+                case 'female caller':
+                case 'christina':
+                case 'male caller #2':
+                case 'male caller #3':
+                case 'male caller #4':
+                case 'dee':
+                case 'mark':
+                case 'richard':
+                case 'shelley':
+                case 'chris':
+                case 'woman caller':
+                case 'sarah':
+                case 'owen':
+                case 'sam':
+                case 'tim':
+                case 'vicky':
+                case 'jessica':
+                case 'caller #1':
+                case 'caller #2':
+                case 'expert':
+                case 'fish shop guy':
                     
                     var line = new Line(show, series, episode, date, title, subject, linecounter, 'call-in guest', currentSegment, content, wordcontent);
                     parsed.push(line);
@@ -155,6 +180,10 @@ ParseService.ReadScript = function(data, callback) {
                     linecounter++;
 
                     break;
+                case 'classic link':
+                    //in "best of episodes" this would link to the correct transcript. i'm not bothered
+                    break;  
+
                 default:
                     console.log('unknown subject in ' + title + ' --> ' + subject + ': ' + content);
             }

@@ -77,22 +77,22 @@ SearchService.search = function(term, maximum, callback) {
                     //log += words[i] + '=' + (wordinsidescore + termdepthscore) + ' wordinside (' + termdepthscore + '). ';
                     continue;
                 }
-                if (content.match(beginswith) && !content.match(wholeterm)) {
+                // if (content.match(beginswith) && !content.match(wholeterm)) {
                     
-                    var beginswithscore = 150;
+                //     var beginswithscore = 150;
 
-                    //ok, which word inside content? more depth lessens score
-                    for (var j = 0; j < contentwords.length; ++j) {
-                        var match = new RegExp(words[i],'i');
-                        if (contentwords[j].match(match)) {
-                            beginswithscore -= (10 * j);
-                        }
-                    }
+                //     //ok, which word inside content? more depth lessens score
+                //     for (var j = 0; j < contentwords.length; ++j) {
+                //         var match = new RegExp(words[i],'i');
+                //         if (contentwords[j].match(match)) {
+                //             beginswithscore -= (10 * j);
+                //         }
+                //     }
 
-                    searchscore += (beginswithscore + termdepthscore);
-                    //log += words[i] + '=' + (beginswithscore + termdepthscore) + ' beginswith (' + termdepthscore + '). ';
-                    continue;
-                }
+                //     searchscore += (beginswithscore + termdepthscore);
+                //     //log += words[i] + '=' + (beginswithscore + termdepthscore) + ' beginswith (' + termdepthscore + '). ';
+                //     continue;
+                // }
                 if (content.match(partof)) {
                     searchscore += (100 + termdepthscore);
                     //log += words[i] + '=' + (100 + termdepthscore) + ' partof (' + termdepthscore + '). ';
