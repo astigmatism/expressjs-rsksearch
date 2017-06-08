@@ -97,6 +97,7 @@ ParseService.ReadScript = function(data, callback) {
                 case 'claire':
                 case 'claire and steve':
                 case 'karl and steve':
+                case 'ricky and claire':
 
                     var line = new Line(show, series, episode, date, title, subject, linecounter, 'host', currentSegment, content, wordcontent);
                     parsed.push(line);
@@ -144,6 +145,7 @@ ParseService.ReadScript = function(data, callback) {
                 case 'caller #2':
                 case 'expert':
                 case 'fish shop guy':
+                case 'jennifer':
                     
                     var line = new Line(show, series, episode, date, title, subject, linecounter, 'call-in guest', currentSegment, content, wordcontent);
                     parsed.push(line);
@@ -154,6 +156,11 @@ ParseService.ReadScript = function(data, callback) {
                 case 'trail':
                 case 'tape of dilated peoples':
                 case 'tape of dilated peoples played over song':
+                case 'dad':
+                case 'auntie nora':
+                case 'jack torrance':
+                case 'mrs. robinson':
+                case 'answering machine voice':
 
                     var line = new Line(show, series, episode, date, title, subject, linecounter, 'recording', currentSegment, content, wordcontent);
                     parsed.push(line);
